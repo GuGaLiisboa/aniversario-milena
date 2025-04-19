@@ -24,7 +24,6 @@ const images = Array.from({ length: 12 }, (_, i) => {
   return `images/${index}.${index < 10 ? 'jpg' : 'JPG'}`; // Aqui você pode ajustar a extensão
 });
 
-
 const startBtn = document.getElementById("start-btn");
 const presentation = document.getElementById("presentation");
 const mainAudio = document.getElementById("main-audio");
