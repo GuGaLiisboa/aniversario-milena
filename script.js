@@ -19,10 +19,7 @@ const backgrounds = [
   "#f0f8ff", "#fffaf0"
 ];
 
-const images = Array.from({ length: 12 }, (_, i) => {
-  const index = i + 1;
-  return `images/${index}.${index < 10 ? 'jpg' : 'JPG'}`; // Aqui você pode ajustar a extensão
-});
+const images = Array.from({ length: 12 }, (_, i) => `images/${i + 1}.jpg`);
 
 const startBtn = document.getElementById("start-btn");
 const presentation = document.getElementById("presentation");
