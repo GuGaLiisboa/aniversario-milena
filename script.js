@@ -120,17 +120,23 @@ function generateSections() {
 
   observeSections();
 
-  const finalObserver = new IntersectionObserver((entries) => {
+  // Agora, adicione o código do IntersectionObserver para garantir que o áudio final toque apenas uma vez
+  let hasPlayedFinalAudio = false; // Variável para garantir que o áudio final toque apenas uma vez
+
+  const finalObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        mainAudio.pause();
-        finalAudio.play();
+      if (entry.isIntersecting && !hasPlayedFinalAudio) {
+        mainAudio.pause(); // Pausa o áudio principal
+        finalAudio.play(); // Toca o áudio final
+        hasPlayedFinalAudio = true; // Marca que o áudio final foi tocado
+        observer.disconnect(); // Desconecta o observer para evitar repetição
       }
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.6 }); // Configura para disparar quando 60% da seção final estiver visível
 
-  finalObserver.observe(finalSection);
+  finalObserver.observe(finalSection); // Inicia a observação da última seção
 }
+
 
 
 function observeSections() {
